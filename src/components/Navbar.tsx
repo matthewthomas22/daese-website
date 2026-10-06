@@ -4,6 +4,15 @@ import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { Link } from "react-router-dom";
 import type { Variants } from "motion/react";
 import fadeInTop from "../variants/fadeInTop";
+import profileBanner from "/eksporEstetik.webp";
+
+let profileBannerPreload: HTMLImageElement | undefined;
+function preloadProfileBanner() {
+  if (profileBannerPreload) return;
+  profileBannerPreload = new Image();
+  profileBannerPreload.src = profileBanner;
+  profileBannerPreload.onerror = () => { profileBannerPreload = undefined; };
+}
 
 export default function Navbar() {
   const { scrollY } = useScroll();
@@ -38,7 +47,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`m-0 w-screen h-30 md:h-20 fixed z-3  bg-transparent transition-all duration-300 ${
+      className={`m-0 w-screen h-30 md:h-20 fixed z-10  bg-transparent transition-all duration-300 ${
         atTop ? "bg-transparent text-white" : "bg-white text-black shadow-xl"
       } `}
     >
@@ -88,19 +97,19 @@ export default function Navbar() {
               variants={fadeInTop}
               className="nav-menu-item block hover:bg-merahDaese transition duration-300  turn_black font-medium"
             >
-              <Link to="/profile">Profile</Link>
+              <Link to="/profile" onPointerEnter={preloadProfileBanner} onFocus={preloadProfileBanner} onTouchStart={preloadProfileBanner}>Profile</Link>
             </motion.li>
             <motion.li
               variants={fadeInTop}
               className="nav-menu-item block hover:bg-merahDaese transition duration-300  turn_black font-medium"
             >
-              Facility
+              <Link to="/facility">Facility</Link>
             </motion.li>
             <motion.li
               variants={fadeInTop}
               className="nav-menu-item block hover:bg-merahDaese transition duration-300  turn_black font-medium"
             >
-              Contact
+              <Link to="/contact">Contact</Link>
             </motion.li>
             <motion.li
               variants={fadeInTop}

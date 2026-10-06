@@ -1,11 +1,11 @@
-import { useEffect, useState, useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import SplitText from "gsap/src/SplitText";
-import TextPlugin from "gsap/TextPlugin";
+import { useEffect, useState } from "react";
 import bannerImage1 from "/DSC02262.jpg";
 import bannerImage2 from "/homeImage1.webp";
-import { motion } from "motion/react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import { motion, AnimatePresence } from "motion/react";
 import worldwideCustomer from "/worldwidecustomer.png";
 import skilledHumanResources from "/skilledHumanResources.png";
 import buildingFacility from "/buildingFacility.png";
@@ -21,120 +21,125 @@ import rightIcon from "/right-arrow-white-nobg.png";
 // import fadeInTop from "../variants/fadeInTop";
 
 gsap.registerPlugin(useGSAP);
-gsap.registerPlugin(SplitText);
-gsap.registerPlugin(TextPlugin);
+gsap.registerPlugin(ScrollTrigger);
 
-// const BANNER_TEXT: string[] = [
-//   "Defining Quality, Shaping Perfection",
-//   "Trust your garment needs with us and experience excellence at every step",
-// ];
+const BANNER_TEXT: string[] = [
+  "Defining Quality, Shaping Perfection",
+  "Trust your garment needs with us and experience excellence at every step",
+];
 
 export default function HomePage() {
   const slides = [bannerImage1, bannerImage2];
   const [slideIndex, setSlideIndex] = useState<number>(0);
 
+  // const leftTextContainer = useRef<HTMLDivElement>(null);
+  // const rightTextContainer = useRef<HTMLDivElement>(null);
+  useGSAP(() => {
+    gsap.utils.toArray<HTMLDivElement>(".fade-in-left").forEach((el) => {
+      gsap.from(el, {
+        xPercent: -60,
+        autoAlpha: 0,
+        duration: 1,
+        scrollTrigger: {
+          trigger: el,
+          start: "top 60%",
+          toggleActions: "restart none none reverse",
+        },
+      });
+    });
+
+    gsap.utils.toArray<HTMLDivElement>(".fade-in-right").forEach((el) => {
+      gsap.from(el, {
+        xPercent: 60,
+        autoAlpha: 0,
+        duration: 1,
+        scrollTrigger: {
+          trigger: el,
+          start: "top 60%",
+          toggleActions: "restart none none reverse",
+        },
+      });
+    });
+
+    gsap.from(".our-process-title", {
+      yPercent: 60,
+      autoAlpha: 0,
+      duration: 1,
+      scrollTrigger: {
+        trigger: ".our-process-title",
+        start: "top 60%",
+        toggleActions: "restart none none reverse",
+      },
+    });
+
+    //
+    gsap.from(".animate-section-card", {
+      yPercent: 60,
+      autoAlpha: 0,
+      duration: 1,
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: ".animate-section-card",
+        start: "top 60%",
+        toggleActions: "restart none none reverse",
+      },
+    });
+
+    // Our Process Cards
+    gsap.from(".process-section-card", {
+      yPercent: 60,
+      autoAlpha: 0,
+      duration: 1,
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: ".our-process-container",
+        start: "top 60%",
+        toggleActions: "restart none none reverse",
+      },
+    });
+  });
+
   useEffect(() => {
     console.log("slideIndex Changed! -> ", slideIndex);
   }, [slideIndex]);
 
-  const bannerContainer = useRef<HTMLDivElement>(null);
-
-  const tl = useRef<gsap.core.Timeline>(null);
-  const { contextSafe } = useGSAP({ scope: bannerContainer });
-
-  useGSAP(
-    () => {
-      document.fonts.ready.then(() => {
-        const split = SplitText.create(".bannerText1", {
-          type: "words",
-        });
-
-        gsap.from(split.words, {
-          y: 100,
-          autoAlpha: 0,
-          mask: "words",
-          stagger: 0.05,
-          duration: 1.2,
-          ease: "power1.inOut",
-        });
-
-        requestAnimationFrame(() => {
-          // ----- Banner Text -----
-          const splitBanner1 = SplitText.create(".banner-title-1", {
-            type: "words",
-          });
-          const splitBanner2 = SplitText.create(".banner-title-2", {
-            type: "words",
-          });
-
-          // DEBUG 🪲
-          console.log("splitBanner1:", splitBanner1.words.length);
-          console.log("splitBanner2:", splitBanner2.words.length);
-
-          gsap.set(splitBanner1.words, { y: 14 });
-          // gsap.set(splitBanner2.words, {
-          // autoAlpha: 0,
-          // position: "absolute",
-          // top: "50%",
-          // left: "50%",
-          // x: -50,
-          // y: -50,
-          // });
-
-          tl.current = gsap.timeline({ paused: true });
-          tl.current
-            .to(splitBanner1.words, {
-              y: -40,
-              autoAlpha: 0,
-              duration: 0.5,
-              stagger: 0.05,
-            })
-            .from(splitBanner2.words, {
-              yPercent: 60,
-              // autoAlpha: 0,
-              duration: 0.5,
-              stagger: 0.05,
-            });
-        });
-      });
-    },
-    { scope: bannerContainer }
-  );
-
-  const goNext = contextSafe(() => {
+  const goNext = () => {
     setSlideIndex((prev) => Math.min(prev + 1, slides.length - 1));
 
-    tl.current?.play();
     // changeBannerText();
-  });
+  };
 
-  const goPrev = contextSafe(() => {
+  const goPrev = () => {
     setSlideIndex((prev) => Math.max(prev - 1, 0));
-    tl.current?.reverse();
-  });
+  };
 
   return (
     <>
       {/* Banner / Header Section */}
-      <div
-        ref={bannerContainer}
-        className="banner-slideshow w-screen h-screen overflow-hidden relative  bg-black"
-      >
-        <div className="flex flex-col justify-center items-center text-white font-oswald gap-4 absolute z-10 w-full h-full">
+      <div className="banner-slideshow w-screen h-screen overflow-hidden relative  bg-black">
+        <div className="flex flex-col justify-center items-center text-white font-oswald gap-2 absolute z-5 w-full h-full">
           <h4 className="bannerSmall1 text-2xl font-light bannerText1">
             PT Daese Garmin Industries.LTD
           </h4>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <h1 className="text-4xl  bannerText1 bannerBigText banner-title-1">
-              Defining Quality, Shaping Perfection
-            </h1>
-          </div>
-          <div className="w-full">
+          <AnimatePresence mode="wait">
+            <motion.div
+              className="flex flex-col w-full responsive-x-padding h-40 justify-center items-center text-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              key={slideIndex}
+            >
+              <h1 className="text-4xl  bannerText1 bannerBigText banner-title-1">
+                {BANNER_TEXT[slideIndex]}
+              </h1>
+            </motion.div>
+          </AnimatePresence>
+          {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
             <h1 className="text-4xl banner-title-2">
               Trust your garment needs with us and experience excellence at
               every step
             </h1>
-          </div>
+          </div> */}
           <h4 className="text-xl font-light bannerText1">since 1988</h4>
         </div>
         <div
@@ -179,7 +184,7 @@ export default function HomePage() {
 
       {/* Text Below Banner */}
       <div className="h-auto p-8 box-border w-full m-0 md:flex responsive-x-padding">
-        <div className="w-full h-auto py-6">
+        <div className="w-full h-auto py-6 fade-in-left">
           <div className="text-merahDaese tracking-wide text-2xl font-oswald font-bold">
             WELCOME TO
           </div>
@@ -195,7 +200,7 @@ export default function HomePage() {
             of Garment Manufacturing Expertise!
           </div>
         </div>
-        <div className="w-full h-auto p-6">
+        <div className="w-full h-auto p-6 fade-in-right">
           <div className="font-montserrat font-semibold leading-[2.44] text-justify">
             Embarking on a Remarkable Journey: PT DAESE GARMIN itself was
             established on March 15, 1988, as a joint venture with Daewoo
@@ -216,7 +221,7 @@ export default function HomePage() {
         machine.png 
       --> */}
         <div className="flex flex-col md:flex-row items-center gap-4 pb-16">
-          <div className="w-60 h-60 text-center text-white font-montserrat flex flex-col justify-center items-center p-4 rounded-xl shadow-xl bg-[hsla(357,65%,56%,1)]">
+          <div className="animate-section-card w-60 h-60 text-center text-white font-montserrat flex flex-col justify-center items-center p-4 rounded-xl shadow-xl bg-[hsla(357,65%,56%,1)]">
             <img
               className="object-contain w-20 h-20"
               src={worldwideCustomer}
@@ -224,7 +229,7 @@ export default function HomePage() {
             />
             <div className="mt-8"> Worldwide Customer </div>
           </div>
-          <div className="w-60 h-60 text-center text-white font-montserrat flex flex-col justify-center items-center p-4 rounded-xl shadow-xl bg-[hsla(357,65%,56%,1)]">
+          <div className="animate-section-card w-60 h-60 text-center text-white font-montserrat flex flex-col justify-center items-center p-4 rounded-xl shadow-xl bg-[hsla(357,65%,56%,1)]">
             <img
               className="object-contain w-20 h-20"
               src={skilledHumanResources}
@@ -232,7 +237,7 @@ export default function HomePage() {
             />
             <div className="mt-8"> 4200+ Skilled Human Resources </div>
           </div>
-          <div className="w-60 h-60 text-center text-white font-montserrat flex flex-col justify-center items-center p-4 rounded-xl shadow-xl bg-[hsla(357,65%,56%,1)]">
+          <div className="animate-section-card w-60 h-60 text-center text-white font-montserrat flex flex-col justify-center items-center p-4 rounded-xl shadow-xl bg-[hsla(357,65%,56%,1)]">
             <img
               className="object-contain w-20 h-20"
               src={buildingFacility}
@@ -240,18 +245,18 @@ export default function HomePage() {
             />
             <div className="mt-8"> 8 Building Facility </div>
           </div>
-          <div className="w-60 h-60 text-center text-white font-montserrat flex flex-col justify-center items-center p-4 rounded-xl shadow-xl bg-[hsla(357,65%,56%,1)]">
+          <div className="animate-section-card w-60 h-60 text-center text-white font-montserrat flex flex-col justify-center items-center p-4 rounded-xl shadow-xl bg-[hsla(357,65%,56%,1)]">
             <img className="object-contain w-20 h-20" src={machine} alt="" />
             <div className="mt-8"> 4000+ Machine </div>
           </div>
         </div>
         <div className="flex flex-col md:flex-row gap-4 pb-16">
           {/* <!-- gambar di Section ini --> */}
-          <div className="w-full">
+          <div className="w-full fade-in-left">
             <img className="object-contain w-full" src={dindingMtm} alt="" />
           </div>
           {/* <!-- Tulisan lagi disampingnya --> */}
-          <div className="w-full">
+          <div className="w-full fade-in-right">
             <span className="block w-full h-auto text-4xl font-semibold pb-4 text-white font-montserrat tracking-wide">
               Men’s Suit
             </span>
@@ -270,8 +275,8 @@ export default function HomePage() {
       </section>
 
       {/* <!-- Our Process section  --> */}
-      <section className="py-24 m-0 w-full h-fit">
-        <div className="text-center pb-16">
+      <section className="py-24 m-0 w-full h-fit our-process-container overflow-hidden">
+        <div className="text-center pb-16 our-process-title">
           <span className="uppercase font-oswald text-4xl font-extrabold">
             our process
           </span>

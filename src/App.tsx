@@ -4,6 +4,8 @@ import Layout from "./components/Layout";
 import ProfilePage from "./pages/ProfilePage";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
+import FacilityPage from "./pages/FacilityPage";
+import ContactPage from "./pages/ContactPage";
 
 // Determine if this app is in production or in development
 const appBasename = import.meta.env.PROD ? "/daese-website" : "";
@@ -27,6 +29,24 @@ function App() {
           element={
             <Layout>
               <ProfilePage></ProfilePage>
+            </Layout>
+          }
+        ></Route>
+        {/* Profile Page Route */}
+        <Route
+          path="/facility"
+          element={
+            <Layout>
+              <FacilityPage></FacilityPage>
+            </Layout>
+          }
+        ></Route>
+        {/* Profile Page Route */}
+        <Route
+          path="/contact"
+          element={
+            <Layout>
+              <ContactPage></ContactPage>
             </Layout>
           }
         ></Route>
