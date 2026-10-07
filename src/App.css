@@ -21,6 +21,22 @@ button.motion-btn {
   @apply bg-transparent hover:border-none  focus:outline-none;
 }
 
+/* .container {
+  @apply w-full px-10 md:px-20 lg:px-40 xl:px-60 2xl:px-80;
+} */
+
+.page-container {
+  @apply mx-auto w-full max-w-7xl px-6 sm:px-10 lg:px-16;
+}
+
+.eyebrow{
+  @apply text-[11px] font-semibold uppercase tracking-[0.22em];
+}
+
+.heading {
+  @apply font-oswald text-4xl font-medium leading-[1.12] tracking-tight sm:text-5xl lg:text-6xl;
+}
+
 /* Home page our process section card our process */
 
 .process-card-container {

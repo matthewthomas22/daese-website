@@ -1,4 +1,4 @@
-﻿import FacilityBanner from "/mesinCutting.webp";
+﻿import FacilityBanner from "/mesinCuttingCompressed.webp";
 
 const buildings = [
   { count: "4", name: "Production plants", detail: "The heart of our garment manufacturing operations." },
@@ -21,7 +21,7 @@ const gallery = [
   { filename: "cwhEksporRailingCompressed.webp", title: "Space to keep moving", caption: "A closer look at our facilities", alt: "Railing and work areas inside the warehouse" },
 ];
 
-const container = "w-full  responsive-x-padding";
+// const container = "w-full  responsive-x-padding";
 const eyebrow = "text-[11px] font-semibold uppercase tracking-[0.22em]";
 const heading = "font-oswald text-4xl font-medium leading-[1.12] tracking-tight sm:text-5xl lg:text-6xl";
 
@@ -31,7 +31,7 @@ export default function FacilityPage() {
       <section aria-labelledby="facility-title" className="relative isolate flex min-h-[560px] items-end overflow-hidden bg-neutral-900 pt-40 pb-16 sm:min-h-[620px] sm:pb-20">
         <img src={FacilityBanner} alt="Garment cutting machinery at our factory" fetchPriority="high" className="absolute inset-0 -z-20 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/80 via-black/55 to-black/20" />
-        <div className={container}>
+        <div className="page-container">
           <p className={`${eyebrow} mb-6 text-white/80`}>Our facility / Bandung, Indonesia</p>
           <h1 id="facility-title" className="max-w-3xl font-oswald text-6xl font-medium leading-[1.04] tracking-tight text-white sm:text-7xl lg:text-8xl">
             The space behind<br />every stitch.
@@ -45,7 +45,7 @@ export default function FacilityPage() {
         </div>
       </section>
 
-      <section id="facility-overview" aria-labelledby="overview-title" className={`${container} scroll-mt-32 py-16 sm:py-24`}>
+      <section id="facility-overview" aria-labelledby="overview-title" className="page-container scroll-mt-32 py-16 sm:py-24">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className={`${eyebrow} mb-5 text-merahDaese`}>01 / At a glance</p>
@@ -71,7 +71,7 @@ export default function FacilityPage() {
       </section>
 
       <section aria-labelledby="buildings-title" className="bg-[#f5f4f1] py-16 sm:py-24">
-        <div className={`${container} grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20`}>
+        <div className="page-container grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <div>
             <p className={`${eyebrow} mb-5 text-merahDaese`}>02 / The factory</p>
             <h2 id="buildings-title" className={heading}>A place for<br />every process.</h2>
@@ -91,7 +91,7 @@ export default function FacilityPage() {
         </div>
       </section>
 
-      <section aria-labelledby="machinery-title" className={`${container} py-16 sm:py-24`}>
+      <section aria-labelledby="machinery-title" className="page-container py-16 sm:py-24">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className={`${eyebrow} mb-5 text-merahDaese`}>03 / Our equipment</p>
@@ -112,7 +112,7 @@ export default function FacilityPage() {
       </section>
 
       <section aria-labelledby="gallery-title" className="bg-[#f5f4f1] py-16 sm:py-24">
-        <div className={container}>
+        <div className="page-container">
           <div className="mb-10 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
             <div>
               <p className={`${eyebrow} mb-5 text-merahDaese`}>04 / Inside Daese Garmin</p>

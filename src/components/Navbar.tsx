@@ -48,7 +48,7 @@ export default function Navbar() {
   return (
     <header
       className={`
-        fixed top-0 left-0 z-10 m-0 w-screen h-30
+        fixed top-0 left-0 z-10 m-0 w-screen h-15 md:h-30
         transition-[background-color,color,box-shadow] duration-300
         ${
           atTop
@@ -58,7 +58,7 @@ export default function Navbar() {
       `}
     >
       <div
-        className="relative flex flex-col gap-3 md:gap-0 md:flex-row justify-around just w-full h-full"
+        className="relative flex gap-3 md:gap-0 md:flex-row justify-between page-container just w-full h-full"
         id="navbar-inner-container"
       >
         <motion.div
@@ -68,12 +68,12 @@ export default function Navbar() {
           className="w-auto  flex gap-3 justify-center items-center"
         >
           <div className="">
-            <img className="w-12" src={logoDaese} alt="logoDaese" />
+            <img className="w-4 sm:w-12" src={logoDaese} alt="logoDaese" />
           </div>
           <div className="opacity-100">
             <span
               id="navbarTitle1"
-              className="p-0 m-0 text-lg md:text-xl sm:text-lg  font-bold"
+              className="p-0 m-0 text-lg md:text-xl sm:text-sm font-bold"
             >
               Daese Garmin
             </span>
@@ -86,7 +86,7 @@ export default function Navbar() {
             </span>
           </div>
         </motion.div>
-        <nav className="grid place-content-center nav-menu">
+        <nav className="hidden place-content-center nav-menu sm:grid">
           <motion.ul
             className="flex gap-4"
             variants={listVariants}
