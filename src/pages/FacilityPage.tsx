@@ -1,11 +1,11 @@
 ﻿import FacilityBanner from "/mesinCutting.webp";
 
 const buildings = [
-  { count: "04", name: "Production plants", detail: "The heart of our garment manufacturing operations." },
-  { count: "01", name: "Central cutting facility", detail: "A dedicated space for fabric preparation and cutting." },
-  { count: "01", name: "Central warehouse", detail: "Storage and coordination for materials and supplies." },
-  { count: "01", name: "Finished goods warehouse", detail: "The final stop before our garments reach the world." },
-  { count: "01", name: "Made-to-measure building", detail: "A dedicated home for individually tailored garments." },
+  { count: "4", name: "Production plants", detail: "The heart of our garment manufacturing operations." },
+  { count: "1", name: "Central cutting facility", detail: "A dedicated space for fabric preparation and cutting." },
+  { count: "1", name: "Central warehouse", detail: "Storage and coordination for materials and supplies." },
+  { count: "1", name: "Finished goods warehouse", detail: "The final stop before our garments reach the world." },
+  { count: "1", name: "Made-to-measure building", detail: "A dedicated home for individually tailored garments." },
 ];
 
 const machinery = [
@@ -21,7 +21,7 @@ const gallery = [
   { filename: "cwhEksporRailingCompressed.webp", title: "Space to keep moving", caption: "A closer look at our facilities", alt: "Railing and work areas inside the warehouse" },
 ];
 
-const container = "mx-auto w-full max-w-7xl px-6 sm:px-10 lg:px-16";
+const container = "w-full  responsive-x-padding";
 const eyebrow = "text-[11px] font-semibold uppercase tracking-[0.22em]";
 const heading = "font-oswald text-4xl font-medium leading-[1.12] tracking-tight sm:text-5xl lg:text-6xl";
 
@@ -80,7 +80,7 @@ export default function FacilityPage() {
           <ul className="border-t border-neutral-300">
             {buildings.map((building) => (
               <li key={building.name} className="grid grid-cols-[48px_1fr] gap-4 border-b border-neutral-300 py-6 sm:grid-cols-[64px_1fr]">
-                <span className="font-oswald text-3xl font-normal text-merahDaese" aria-label={`${Number(building.count)} buildings`}>{building.count}</span>
+                <span className="font-oswald text-4xl font-normal text-merahDaese" aria-label={`${Number(building.count)} buildings`}>{building.count}</span>
                 <div>
                   <h3 className="text-base font-semibold leading-6 tracking-tight sm:text-lg">{building.name}</h3>
                   <p className="mt-2 text-sm leading-6 text-neutral-600">{building.detail}</p>

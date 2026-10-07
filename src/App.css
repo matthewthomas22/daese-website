@@ -51,7 +51,7 @@ button.motion-btn {
 }
 
 .responsive-x-padding {
-  @apply px-10 md:px-20 lg:px-40 xl:px-50;
+  @apply px-10 md:px-20 lg:px-40 xl:px-60 2xl:px-80;
 }
 
 .process-section-card .ourProcess-title {
@@ -68,7 +68,11 @@ button.motion-btn {
 }
 
 .big-red-button {
-  @apply border-none text-white outline-none bg-merahDaese transition duration-400 hover:transform hover:-translate-y-2 hover:bg-red-400 hover:shadow-xl;
+  @apply border-none font-oswald font-semibold text-xl px-4 py-2 rounded-lg cursor-pointer text-white outline-none bg-merahDaese transition duration-400 hover:transform hover:-translate-y-2 hover:bg-red-400 hover:shadow-xl;
+}
+
+.big-white-button {
+  @apply border-none font-oswald font-semibold text-xl px-4 py-2 rounded-lg cursor-pointer text-black outline-none bg-white transition duration-400 hover:transform hover:-translate-y-2 hover:bg-gray-200 hover:shadow-xl;
 }
 
 #company-profile-button {

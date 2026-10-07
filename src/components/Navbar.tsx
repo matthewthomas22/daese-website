@@ -47,9 +47,15 @@ export default function Navbar() {
 
   return (
     <header
-      className={`m-0 w-screen h-30 md:h-20 fixed z-10  bg-transparent transition-all duration-300 ${
-        atTop ? "bg-transparent text-white" : "bg-white text-black shadow-xl"
-      } `}
+      className={`
+        fixed top-0 left-0 z-10 m-0 w-screen h-30
+        transition-[background-color,color,box-shadow] duration-300
+        ${
+          atTop
+            ? "bg-transparent text-white"
+            : "bg-white text-black shadow-xl"
+        }
+      `}
     >
       <div
         className="relative flex flex-col gap-3 md:gap-0 md:flex-row justify-around just w-full h-full"
@@ -89,31 +95,31 @@ export default function Navbar() {
           >
             <motion.li
               variants={fadeInTop}
-              className="nav-menu-item block hover:bg-merahDaese transition duration-300  turn_black font-medium"
+              className="nav-menu-item block hover:bg-merahDaese hover:text-white transition duration-300  turn_black font-medium"
             >
               <Link to="/">Home</Link>
             </motion.li>
             <motion.li
               variants={fadeInTop}
-              className="nav-menu-item block hover:bg-merahDaese transition duration-300  turn_black font-medium"
+              className="nav-menu-item block hover:bg-merahDaese hover:text-white transition duration-300  turn_black font-medium"
             >
-              <Link to="/profile" onPointerEnter={preloadProfileBanner} onFocus={preloadProfileBanner} onTouchStart={preloadProfileBanner}>Profile</Link>
+              <Link to="/profile" onPointerEnter={preloadProfileBanner} onFocus={preloadProfileBanner} onTouchStart={preloadProfileBanner}>About Us</Link>
             </motion.li>
             <motion.li
               variants={fadeInTop}
-              className="nav-menu-item block hover:bg-merahDaese transition duration-300  turn_black font-medium"
+              className="nav-menu-item block hover:bg-merahDaese hover:text-white transition duration-300  turn_black font-medium"
             >
               <Link to="/facility">Facility</Link>
             </motion.li>
             <motion.li
               variants={fadeInTop}
-              className="nav-menu-item block hover:bg-merahDaese transition duration-300  turn_black font-medium"
+              className="nav-menu-item block hover:bg-merahDaese hover:text-white transition duration-300  turn_black font-medium"
             >
               <Link to="/contact">Contact</Link>
             </motion.li>
             <motion.li
               variants={fadeInTop}
-              className="nav-menu-item block hover:bg-merahDaese transition duration-300  turn_black font-medium"
+              className="nav-menu-item block hover:bg-merahDaese hover:text-white transition duration-300  turn_black font-medium"
             >
               <Link to="/product">Product</Link>
             </motion.li>

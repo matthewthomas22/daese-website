@@ -129,7 +129,7 @@ export default function HomePage() {
               exit={{ opacity: 0 }}
               key={slideIndex}
             >
-              <h1 className="text-4xl  bannerText1 bannerBigText banner-title-1">
+              <h1 className="text-6xl  bannerText1 bannerBigText banner-title-1">
                 {BANNER_TEXT[slideIndex]}
               </h1>
             </motion.div>
@@ -183,7 +183,7 @@ export default function HomePage() {
       </div>
 
       {/* Text Below Banner */}
-      <div className="h-auto p-8 box-border w-full m-0 md:flex responsive-x-padding">
+      <div className="h-auto p-8 box-border w-full m-0 md:flex responsive-x-padding bg-white text-neutral-900">
         <div className="w-full h-auto py-6 fade-in-left">
           <div className="text-merahDaese tracking-wide text-2xl font-oswald font-bold">
             WELCOME TO
@@ -220,7 +220,7 @@ export default function HomePage() {
         buildingFacility.png
         machine.png 
       --> */}
-        <div className="flex flex-col md:flex-row items-center gap-4 pb-16">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pb-16">
           <div className="animate-section-card w-60 h-60 text-center text-white font-montserrat flex flex-col justify-center items-center p-4 rounded-xl shadow-xl bg-[hsla(357,65%,56%,1)]">
             <img
               className="object-contain w-20 h-20"
@@ -269,7 +269,7 @@ export default function HomePage() {
               Men’s and Ladies Suits.
             </span>
             <br />
-            <button className="big-button-white mt-32">OUR FACILITY</button>
+            <button className="big-white-button mt-18">OUR FACILITY</button>
           </div>
         </div>
       </section>

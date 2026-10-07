@@ -68,9 +68,9 @@ export default function ProfilePage() {
       ></Banner>
 
       {/* <!-- another section --> */}
-      <div className="py-16 w-full h-auto overflow-hidden flex flex-col md:flex-row">
+      <div className="py-16 w-full h-auto overflow-hidden flex flex-col md:flex-row responsive-x-padding">
         {/* <!-- Text Container --> */}
-        <div className="font-montserrat p-8 md:mx-6 lg:mx-12 text-center lg:w-300 fade-in-left">
+        <div className="font-montserrat p-8  text-center lg:w-300 fade-in-left">
           <div className="text-2xl font-bold pb-4 text-center">
             <span className="text-4xl">Daese Garmin</span> <br />
             Industries. LTD
@@ -89,9 +89,9 @@ export default function ProfilePage() {
           </div>
           <button
             id="company-profile-button"
-            className="px-6 py-3 text-white font-oswald font-semibold text-xl uppercase"
+            className="big-red-button"
           >
-            download company profile
+            Download Company Profile
           </button>
         </div>
         {/* <!-- image  --> */}
