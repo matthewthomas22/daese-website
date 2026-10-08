@@ -1,4 +1,4 @@
-import profileBanner from "/eksporEstetik.webp";
+import profileBanner from "/eksporEstetikCompressed.webp";
 import cinematicMtm from "/cinematicMtmCompressed.webp";
 // import Banner from "../components/Banner";
 import gsap from "gsap";
@@ -72,6 +72,22 @@ export default function ProfilePage() {
         },
       });
     });
+    gsap.from(".partner-logo", {
+      y: 24,
+      autoAlpha: 0,
+      duration: 3,
+      ease: "power2.out",
+      stagger: {
+        amount: 1,
+        from: "random",
+      },
+      scrollTrigger: {
+        trigger: ".partner-logo-grid",
+        start: "top 85%",
+        once: true,
+      },
+    });
+
     return () => { cancelled = true; };
   }, { scope: pageRef });
 
@@ -143,7 +159,7 @@ export default function ProfilePage() {
 
       <section className="py-16 w-full h-auto bg-white page-container">
         <div>
-          <div className="font-oswald text-2xl 2xl:text-3xl font-semibold pb-4 text-center">
+          <div className="font-oswald text-2xl xl:text-5xl font-semibold pb-4 text-center tracking-wide">
             Our Global Reach
           </div>
           <div className="text-center text-sm px-40 md:px-60 xl:px-80">
@@ -153,13 +169,13 @@ export default function ProfilePage() {
             <b> Singapore</b> and <b>Australia</b>. Among our esteemed clients
             are:
           </div>
-          <div className="py-10 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-10 items-center justify-items-center ">
+          <div className="partner-logo-grid py-10 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-10 items-center justify-items-center">
             {partnerLogos.map((logo) => (
               <img
                 key={logo.filename}
                 src={`${import.meta.env.BASE_URL}bw_logo/${logo.filename}`}
                 alt={logo.name}
-                className="imgItem w-32"
+                className="partner-logo imgItem w-32"
                 loading="lazy"
               />
             ))}

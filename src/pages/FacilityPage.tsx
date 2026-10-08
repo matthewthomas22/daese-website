@@ -1,5 +1,11 @@
 ﻿import FacilityBanner from "/mesinCuttingCompressed.webp";
 import SplitLines from "../components/SplitLines";
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const buildings = [
   { count: "4", name: "Production plants", detail: "The heart of our garment manufacturing operations." },
@@ -27,6 +33,48 @@ const eyebrow = "text-[11px] font-semibold uppercase tracking-[0.22em]";
 const heading = "font-oswald text-4xl font-medium leading-[1.12] tracking-tight sm:text-5xl lg:text-6xl";
 
 export default function FacilityPage() {
+  const statsRef = useRef<HTMLDListElement>(null);
+
+  useGSAP(() => {
+    const media = gsap.matchMedia();
+
+    media.add("(prefers-reduced-motion: no-preference)", () => {
+      const numbers = gsap.utils.toArray<HTMLSpanElement>(
+        "[data-count-value]", statsRef.current,
+      );
+      const formatter = new Intl.NumberFormat("en-US");
+
+      numbers.forEach((element) => {
+        const finalValue = element.dataset.countValue!;
+        const counter = { value: 0 };
+        const format = (value: number) => finalValue.startsWith("0")
+          ? String(Math.round(value)).padStart(finalValue.length, "0")
+          : formatter.format(Math.round(value));
+
+        element.textContent = format(0);
+        gsap.to(counter, {
+          value: Number(finalValue.replaceAll(",", "")),
+          duration: 2,
+          ease: "power2.out",
+          onUpdate: () => { element.textContent = format(counter.value); },
+          scrollTrigger: {
+            trigger: element,
+            start: "top 90%",
+            once: true,
+          },
+        });
+      });
+
+      return () => {
+        numbers.forEach((element) => {
+          element.textContent = element.dataset.countValue!;
+        });
+      };
+    });
+
+    return () => media.revert();
+  }, { scope: statsRef });
+
   return (
     <div className="bg-white font-montserrat text-neutral-900">
       <section aria-labelledby="facility-title" className="relative isolate flex min-h-[560px] items-end overflow-hidden bg-neutral-900 pt-40 pb-16 sm:min-h-[620px] sm:pb-20">
@@ -60,14 +108,14 @@ export default function FacilityPage() {
             <p className="mt-4">Eight buildings provide dedicated space for manufacturing, cutting, warehousing, and made-to-measure work.</p>
           </div>
         </div>
-        <dl className="mt-12 grid border-y border-neutral-200 sm:mt-16 sm:grid-cols-3">
+        <dl ref={statsRef} className="mt-12 grid border-y border-neutral-200 sm:mt-16 sm:grid-cols-3">
           {[
             { value: "67,586", unit: "m²", label: "Total land area" },
             { value: "26,650", unit: "m²", label: "Building area" },
             { value: "08", unit: "", label: "Dedicated buildings" },
           ].map((stat) => (
             <div key={stat.label} className="border-b border-neutral-200 py-8 last:border-b-0 sm:border-r sm:border-b-0 sm:px-8 sm:first:pl-0 sm:last:border-r-0">
-              <dd className="flex items-baseline gap-2 font-oswald text-5xl font-normal tracking-tight text-merahDaese lg:text-6xl">{stat.value}<span className="text-xl text-neutral-500">{stat.unit}</span></dd>
+              <dd className="flex items-baseline gap-2 font-oswald text-5xl font-normal tracking-tight text-merahDaese lg:text-6xl"><span className="sr-only">{stat.value} {stat.unit}</span><span aria-hidden="true" data-count-value={stat.value} className="tabular-nums">{stat.value}</span><span aria-hidden="true" className="text-xl text-neutral-500">{stat.unit}</span></dd>
               <dt className="mt-3 text-xs font-medium tracking-wide text-neutral-600">{stat.label}</dt>
             </div>
           ))}
@@ -99,7 +147,7 @@ export default function FacilityPage() {
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className={`${eyebrow} mb-5 text-merahDaese`}>03 / Our equipment</p>
-            <h2 id="machinery-title" className={heading}>Precision, at<br />every step.</h2>
+            <h2 id="machinery-title" className={heading}>Precision, at every step.</h2>
           </div>
           <p className="max-w-lg self-end text-sm leading-7 text-neutral-600 sm:text-base sm:leading-8">Specialist machinery supports each stage of garment making, from digital pattern preparation to pressing and finishing.</p>
         </div>

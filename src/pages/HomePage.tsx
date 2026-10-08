@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import bannerImage1 from "/DSC02262.jpg";
+import bannerImage1 from "/SewingHeaderCompressed.webp";
 import bannerImage2 from "/homeImage1.webp";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -10,7 +10,7 @@ import worldwideCustomer from "/worldwidecustomer.png";
 import skilledHumanResources from "/skilledHumanResources.png";
 import buildingFacility from "/buildingFacility.png";
 import machine from "/machine.png";
-import dindingMtm from "/dinding_mtm.webp";
+import dindingMtm from "/dinding_mtmCompressed.webp";
 import processIcon1 from "/processIcon1.png";
 import processIcon2 from "/processIcon2.png";
 import processIcon3 from "/processIcon3.png";
@@ -119,7 +119,7 @@ export default function HomePage() {
 
         {/* Banner / Header Section */}
         <div className="banner-slideshow w-screen h-screen overflow-hidden relative  bg-black">
-          <div className="flex flex-col justify-center items-center text-white font-oswald gap-2 absolute z-5 w-full h-full">
+          <div className="flex flex-col justify-center items-center text-white font-oswald gap-2 absolute z-10 w-full h-full bg-gradient-to-t from-black/80 via-black/55 to-black/20">
             <p className="eyebrow text-white/80">From Indonesia to the World</p>
             <AnimatePresence mode="wait">
               <motion.div
