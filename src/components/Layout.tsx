@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import SmoothScroll from "./SmoothScroll";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,11 +9,15 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="p-0 m-0 bg-white text-neutral-900">
+    <>
       <Navbar></Navbar>
-      <main className="w-screen overflow-x-hidden">{children}</main>
-      <Footer></Footer>
-    </div>
+      <SmoothScroll>
+        <div className="p-0 m-0 bg-white text-neutral-900">
+          <main className="w-screen overflow-x-hidden">{children}</main>
+          <Footer></Footer>
+        </div>
+      </SmoothScroll>
+    </>
   );
 };
 

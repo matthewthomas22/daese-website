@@ -6,10 +6,9 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { partnerLogos } from "../data/partnerLogos";
 import { useRef } from "react";
-// import process from "process";
+import SplitLines from "../components/SplitLines";
 
-gsap.registerPlugin(useGSAP);
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function ProfilePage() {
   const pageRef = useRef<HTMLDivElement>(null);
@@ -27,6 +26,22 @@ export default function ProfilePage() {
         once: true,
       },
     });
+
+    // SplitText.create("#banner-title", {
+    //   type: "lines",
+    //   mask: "lines",
+    //   autoSplit: true,
+    //   onSplit: (self) => {
+    //     return gsap.from(self.lines, {
+    //       yPercent: 100,
+    //       opacity: 0,
+    //       duration: 0.8,
+    //       stagger: 0.15,
+    //       autoAlpha: 0,
+    //       ease: "power3.out",
+    //     });
+    //   },
+    // });
 
     let cancelled = false;
     const animatePhoto = contextSafe(() => {
@@ -67,9 +82,12 @@ export default function ProfilePage() {
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/80 via-black/55 to-black/20" />
         <div className="page-container">
           <p className="eyebrow mb-6 text-white/80">From Indonesia to the World</p>
-          <h1 id="aboutUs-title" className="max-w-3xl font-oswald text-4xl font-medium leading-[1.04] tracking-tight text-white sm:text-7xl lg:text-8xl">
+          <SplitLines as="h1" className="max-w-3xl font-oswald text-4xl font-medium leading-[1.04] tracking-tight text-white sm:text-7xl lg:text-8xl">
             This is <br/> who we are.
-          </h1>
+          </SplitLines>
+          {/* <h1 id="aboutUs-title" className="max-w-3xl font-oswald text-4xl font-medium leading-[1.04] tracking-tight text-white sm:text-7xl lg:text-8xl">
+            This is <br/> who we are.
+          </h1> */}
           <p className="mt-7 max-w-md text-sm leading-7 text-white/85 sm:text-base">
             All your manufacturing needs, from the first cut to the finished garment, are met with precision and care at Daese Garmin. Our Bandung facility brings the stages of production together in one location, providing dedicated space for manufacturing, cutting, warehousing, and made-to-measure work.
           </p>

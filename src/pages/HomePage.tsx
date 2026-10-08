@@ -120,9 +120,7 @@ export default function HomePage() {
         {/* Banner / Header Section */}
         <div className="banner-slideshow w-screen h-screen overflow-hidden relative  bg-black">
           <div className="flex flex-col justify-center items-center text-white font-oswald gap-2 absolute z-5 w-full h-full">
-            <h4 className="bannerSmall1 text-[clamp(1rem,0.8rem_+_1vw,1.5rem)] font-light bannerText1">
-              PT Daese Garmin Industries.LTD
-            </h4>
+            <p className="eyebrow text-white/80">From Indonesia to the World</p>
             <AnimatePresence mode="wait">
               <motion.div
                 className="flex flex-col w-full page-container h-40 justify-center items-center text-center"
@@ -131,7 +129,7 @@ export default function HomePage() {
                 exit={{ opacity: 0 }}
                 key={slideIndex}
               >
-                <h1 className="text-[clamp(2rem,1rem_+_4vw,3.75rem)] leading-[1.1] bannerText1 bannerBigText banner-title-1">
+                <h1 className="text-[clamp(3.5rem,1rem_+_4vw,6rem)] leading-[1.1] bannerText1 bannerBigText banner-title-1">
                   {BANNER_TEXT[slideIndex]}
                 </h1>
               </motion.div>
@@ -142,7 +140,10 @@ export default function HomePage() {
                 every step
               </h1>
             </div> */}
-            <h4 className="text-[clamp(1rem,0.9rem_+_0.4vw,1.25rem)] font-light bannerText1">since 1988</h4>
+             <h4 className="bannerSmall1 text-[clamp(1rem,0.8rem_+_1vw,1.5rem)] text-white/80 font-extralight bannerText1 mt-4">
+              PT Daese Garmin Industries.LTD
+            </h4>
+            <h4 className="text-[clamp(1rem,0.9rem_+_0.4vw,1.25rem)] text-white/85 font-extralight bannerText1">since 1988</h4>
           </div>
           <div
             className="flex h-full relative transition-all duration-500"

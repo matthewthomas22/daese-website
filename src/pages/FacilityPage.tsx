@@ -1,4 +1,5 @@
 ﻿import FacilityBanner from "/mesinCuttingCompressed.webp";
+import SplitLines from "../components/SplitLines";
 
 const buildings = [
   { count: "4", name: "Production plants", detail: "The heart of our garment manufacturing operations." },
@@ -33,9 +34,12 @@ export default function FacilityPage() {
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/80 via-black/55 to-black/20" />
         <div className="page-container">
           <p className={`${eyebrow} mb-6 text-white/80`}>Our facility / Bandung, Indonesia</p>
-          <h1 id="facility-title" className="max-w-3xl font-oswald text-6xl font-medium leading-[1.04] tracking-tight text-white sm:text-7xl lg:text-8xl">
+          <SplitLines as="h1" className="max-w-3xl font-oswald text-6xl font-medium leading-[1.04] tracking-tight text-white sm:text-7xl lg:text-8xl">
             The space behind<br />every stitch.
-          </h1>
+          </SplitLines>
+          {/* <h1 id="facility-title" className="max-w-3xl font-oswald text-6xl font-medium leading-[1.04] tracking-tight text-white sm:text-7xl lg:text-8xl">
+            The space behind<br />every stitch.
+          </h1> */}
           <p className="mt-7 max-w-md text-sm leading-7 text-white/85 sm:text-base">
             Discover the spaces, equipment, and capabilities behind Daese Garmin’s garment manufacturing.
           </p>
