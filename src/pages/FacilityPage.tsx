@@ -1,4 +1,4 @@
-﻿import FacilityBanner from "/mesinCuttingCompressed.webp";
+import FacilityBanner from "/mesinCuttingCompressed.webp";
 import SplitLines from "../components/SplitLines";
 import { useRef } from "react";
 import gsap from "gsap";
@@ -91,7 +91,7 @@ export default function FacilityPage() {
           <p className="mt-7 max-w-md text-sm leading-7 text-white/85 sm:text-base">
             Discover the spaces, equipment, and capabilities behind Daese Garmin’s garment manufacturing.
           </p>
-          <a href="#facility-overview" className="mt-8 inline-flex items-center gap-6 border-b border-white/50 pb-2 text-xs font-semibold uppercase tracking-[0.16em] !text-white transition-colors hover:border-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
+          <a href="#facility-overview" className="mt-8 inline-flex items-center gap-6 border-b border-white/80 pb-2 text-xs font-semibold uppercase tracking-[0.16em] !text-white transition-colors hover:border-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
             Explore our facility <span aria-hidden="true">↓</span>
           </a>
         </div>
@@ -103,39 +103,39 @@ export default function FacilityPage() {
             <p className={`${eyebrow} mb-5 text-merahDaese`}>01 / At a glance</p>
             <h2 id="overview-title" className={heading}>Room for every<br />stage of production.</h2>
           </div>
-          <div className="max-w-lg self-end text-sm leading-7 text-neutral-600 sm:text-base sm:leading-8">
+          <div className="max-w-lg self-end text-sm leading-7 text-neutral-700 sm:text-base sm:leading-8">
             <p>From the first cut to the finished garment, our Bandung facility brings the stages of production together in one location.</p>
             <p className="mt-4">Eight buildings provide dedicated space for manufacturing, cutting, warehousing, and made-to-measure work.</p>
           </div>
         </div>
-        <dl ref={statsRef} className="mt-12 grid border-y border-neutral-200 sm:mt-16 sm:grid-cols-3">
+        <dl ref={statsRef} className="mt-12 grid border-y border-neutral-400 sm:mt-16 sm:grid-cols-3">
           {[
             { value: "67,586", unit: "m²", label: "Total land area" },
             { value: "26,650", unit: "m²", label: "Building area" },
             { value: "08", unit: "", label: "Dedicated buildings" },
           ].map((stat) => (
-            <div key={stat.label} className="border-b border-neutral-200 py-8 last:border-b-0 sm:border-r sm:border-b-0 sm:px-8 sm:first:pl-0 sm:last:border-r-0">
-              <dd className="flex items-baseline gap-2 font-oswald text-5xl font-normal tracking-tight text-merahDaese lg:text-6xl"><span className="sr-only">{stat.value} {stat.unit}</span><span aria-hidden="true" data-count-value={stat.value} className="tabular-nums">{stat.value}</span><span aria-hidden="true" className="text-xl text-neutral-500">{stat.unit}</span></dd>
-              <dt className="mt-3 text-xs font-medium tracking-wide text-neutral-600">{stat.label}</dt>
+            <div key={stat.label} className="border-b border-neutral-400 py-8 last:border-b-0 sm:border-r sm:border-b-0 sm:px-8 sm:first:pl-0 sm:last:border-r-0">
+              <dd className="flex items-baseline gap-2 font-oswald text-5xl font-normal tracking-tight text-merahDaese lg:text-6xl"><span className="sr-only">{stat.value} {stat.unit}</span><span aria-hidden="true" data-count-value={stat.value} className="tabular-nums">{stat.value}</span><span aria-hidden="true" className="text-xl text-neutral-700">{stat.unit}</span></dd>
+              <dt className="mt-3 text-xs font-semibold tracking-wide text-neutral-700">{stat.label}</dt>
             </div>
           ))}
         </dl>
       </section>
 
-      <section aria-labelledby="buildings-title" className="bg-[#f5f4f1] py-16 sm:py-24">
+      <section aria-labelledby="buildings-title" className="border-y border-neutral-400 bg-[#eeece7] py-16 sm:py-24">
         <div className="page-container grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <div>
             <p className={`${eyebrow} mb-5 text-merahDaese`}>02 / The factory</p>
             <h2 id="buildings-title" className={heading}>A place for<br />every process.</h2>
-            <p className="mt-6 max-w-sm text-sm leading-7 text-neutral-600">A closer look at the eight buildings that make up our facility.</p>
+            <p className="mt-6 max-w-sm text-sm leading-7 text-neutral-700">A closer look at the eight buildings that make up our facility.</p>
           </div>
-          <ul className="border-t border-neutral-300">
+          <ul className="border-t border-neutral-400">
             {buildings.map((building) => (
-              <li key={building.name} className="grid grid-cols-[48px_1fr] gap-4 border-b border-neutral-300 py-6 sm:grid-cols-[64px_1fr]">
+              <li key={building.name} className="grid grid-cols-[48px_1fr] gap-4 border-b border-neutral-400 py-6 sm:grid-cols-[64px_1fr]">
                 <span className="font-oswald text-4xl font-normal text-merahDaese" aria-label={`${Number(building.count)} buildings`}>{building.count}</span>
                 <div>
                   <h3 className="text-base font-semibold leading-6 tracking-tight sm:text-lg">{building.name}</h3>
-                  <p className="mt-2 text-sm leading-6 text-neutral-600">{building.detail}</p>
+                  <p className="mt-2 text-sm leading-6 text-neutral-700">{building.detail}</p>
                 </div>
               </li>
             ))}
@@ -149,28 +149,28 @@ export default function FacilityPage() {
             <p className={`${eyebrow} mb-5 text-merahDaese`}>03 / Our equipment</p>
             <h2 id="machinery-title" className={heading}>Precision, at every step.</h2>
           </div>
-          <p className="max-w-lg self-end text-sm leading-7 text-neutral-600 sm:text-base sm:leading-8">Specialist machinery supports each stage of garment making, from digital pattern preparation to pressing and finishing.</p>
+          <p className="max-w-lg self-end text-sm leading-7 text-neutral-700 sm:text-base sm:leading-8">Specialist machinery supports each stage of garment making, from digital pattern preparation to pressing and finishing.</p>
         </div>
         <div className="mt-12 grid gap-x-12 sm:mt-16 md:grid-cols-2">
           {machinery.map((item, index) => (
-            <article key={item.title} className="border-t border-neutral-200 py-8 sm:py-10">
+            <article key={item.title} className="border-t border-neutral-400 py-8 sm:py-10">
               <p className={`${eyebrow} mb-5 text-merahDaese`}>0{index + 1}</p>
               <h3 className="font-oswald text-2xl font-medium tracking-tight sm:text-3xl">{item.title}</h3>
-              <p className="mt-4 max-w-md text-sm leading-7 text-neutral-600">{item.description}</p>
+              <p className="mt-4 max-w-md text-sm leading-7 text-neutral-700">{item.description}</p>
               <p className="mt-6 max-w-md text-[11px] font-semibold uppercase leading-6 tracking-[0.08em] text-neutral-800">{item.brands}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section aria-labelledby="gallery-title" className="bg-[#f5f4f1] py-16 sm:py-24">
+      <section aria-labelledby="gallery-title" className="border-y border-neutral-400 bg-[#eeece7] py-16 sm:py-24">
         <div className="page-container">
           <div className="mb-10 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
             <div>
               <p className={`${eyebrow} mb-5 text-merahDaese`}>04 / Inside Daese Garmin</p>
               <h2 id="gallery-title" className={heading}>A closer look.</h2>
             </div>
-            <p className="max-w-xs text-sm leading-7 text-neutral-600">Explore the spaces where our garments take shape.</p>
+            <p className="max-w-xs text-sm leading-7 text-neutral-700">Explore the spaces where our garments take shape.</p>
           </div>
           <div className="grid gap-8 md:grid-cols-2">
             {gallery.map((photo, index) => (
@@ -178,11 +178,11 @@ export default function FacilityPage() {
                 <div className={`overflow-hidden bg-neutral-200 ${index === 0 ? "aspect-[4/3] sm:aspect-[2/1]" : "aspect-[4/3]"}`}>
                   <img src={`${import.meta.env.BASE_URL}slideshow_images/${photo.filename}`} alt={photo.alt} loading="lazy" decoding="async" className="h-full w-full object-cover" />
                 </div>
-                <figcaption className="flex items-start gap-4 border-b border-neutral-300 py-5">
+                <figcaption className="flex items-start gap-4 border-b border-neutral-400 py-5">
                   <span className="pt-1 text-xs text-merahDaese">0{index + 1}</span>
                   <div>
                     <h3 className="text-sm font-semibold sm:text-base">{photo.title}</h3>
-                    <p className="mt-1 text-xs leading-5 text-neutral-600">{photo.caption}</p>
+                    <p className="mt-1 text-xs leading-5 text-neutral-700">{photo.caption}</p>
                   </div>
                 </figcaption>
               </figure>

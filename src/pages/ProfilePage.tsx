@@ -75,7 +75,7 @@ export default function ProfilePage() {
     gsap.from(".partner-logo", {
       y: 24,
       autoAlpha: 0,
-      duration: 3,
+      duration: 4,
       ease: "power2.out",
       stagger: {
         amount: 1,

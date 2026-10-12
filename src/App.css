@@ -70,6 +70,10 @@ button.motion-btn {
   @apply px-10 md:px-20 lg:px-40 xl:px-60 2xl:px-80;
 }
 
+.center-content {
+  @apply flex items-center justify-center;
+}
+
 .process-section-card .ourProcess-title {
   @apply font-oswald font-semibold mb-2 lg:text-xl;
 }

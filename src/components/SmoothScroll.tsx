@@ -18,6 +18,9 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
         () => {
             if (!wrapper.current || !content.current) return;
 
+            // Start each route at the top before setting up smooth scrolling.
+            window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+
             // Respect the visitor motion preference.
             if( window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
                 return;
@@ -29,6 +32,8 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
                 smooth: 1.5,
                 smoothTouch: false
             });
+
+            smoother.scrollTop(0);
 
             return () => smoother.kill();
         },
