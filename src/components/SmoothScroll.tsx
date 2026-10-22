@@ -35,7 +35,27 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
 
             smoother.scrollTop(0);
 
-            return () => smoother.kill();
+            // Native anchor jumps scroll the fixed wrapper instead of the window, which
+            // desyncs ScrollSmoother. Route same-page hash links through the smoother.
+            const handleAnchorClick = (event: MouseEvent) => {
+                const link = (event.target as HTMLElement).closest<HTMLAnchorElement>('a[href^="#"]');
+                const id = link?.hash.slice(1);
+                const target = id ? document.getElementById(decodeURIComponent(id)) : null;
+                if (!target) return;
+
+                event.preventDefault();
+                // ScrollSmoother ignores CSS scroll-margin, so pass it as the offset.
+                const offset = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+                smoother.scrollTo(target, true, `top ${offset}px`);
+            };
+
+            const contentElement = content.current;
+            contentElement.addEventListener("click", handleAnchorClick);
+
+            return () => {
+                contentElement.removeEventListener("click", handleAnchorClick);
+                smoother.kill();
+            };
         },
         {
             dependencies: [pathname],

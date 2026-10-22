@@ -17,6 +17,9 @@ function preloadProfileBanner() {
 export default function Navbar() {
   const { scrollY } = useScroll();
   const [atTop, setAtTop] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const closeMenu = () => setMenuOpen(false);
+  const solid = !atTop || menuOpen;
 
   // Variants for <ul> element
   const listVariants: Variants = {
@@ -48,27 +51,27 @@ export default function Navbar() {
   return (
     <header
       className={`
-        fixed top-0 left-0 z-10 m-0 w-screen h-15 md:h-30
+        fixed top-0 left-0 z-20 m-0 w-screen h-auto py-2 sm:py-0 sm:h-15 md:h-30
         transition-[background-color,color,box-shadow] duration-300
         ${
-          atTop
-            ? "bg-transparent text-white"
-            : "bg-white text-black shadow-xl"
+          solid
+            ? "bg-white text-black shadow-xl"
+            : "bg-transparent text-white"
         }
       `}
     >
       <div
-        className="relative flex gap-3 md:gap-0 md:flex-row justify-between page-container just w-full h-full"
+        className="relative flex flex-wrap items-center sm:flex-nowrap sm:flex-row gap-1 sm:gap-3 md:gap-0 justify-between page-container just w-full h-full"
         id="navbar-inner-container"
       >
         <motion.div
           variants={fadeInTop}
           initial="initial_state"
           animate="end_state"
-          className="w-auto  flex gap-3 justify-center items-center"
+          className="w-auto min-w-0 flex-1 sm:flex-none flex gap-3 justify-start sm:justify-center items-center"
         >
           <div className="">
-            <img className="w-4 sm:w-12" src={logoDaese} alt="logoDaese" />
+            <img className="w-8 sm:w-12" src={logoDaese} alt="logoDaese" />
           </div>
           <div className="opacity-100">
             <span
@@ -86,9 +89,24 @@ export default function Navbar() {
             </span>
           </div>
         </motion.div>
-        <nav className="hidden place-content-center nav-menu sm:grid">
+        <button
+          type="button"
+          className="sm:hidden grid h-11 w-11 shrink-0 place-content-center rounded-md cursor-pointer"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          aria-controls="primary-nav"
+          onClick={() => setMenuOpen((o) => !o)}
+        >
+          <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+            {menuOpen ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+          </svg>
+        </button>
+        <nav
+          id="primary-nav"
+          className={`${menuOpen ? "grid" : "hidden"} w-full sm:w-auto sm:grid sm:place-content-center nav-menu`}
+        >
           <motion.ul
-            className="flex gap-4"
+            className="flex flex-col sm:flex-row sm:justify-start sm:gap-4 pb-2 sm:pb-0"
             variants={listVariants}
             initial="initial_state"
             animate="end_state"
@@ -97,31 +115,31 @@ export default function Navbar() {
               variants={fadeInTop}
               className="nav-menu-item block hover:bg-merahDaese hover:text-white transition duration-300  turn_black font-medium"
             >
-              <Link to="/">Home</Link>
+              <Link to="/" onClick={closeMenu}>Home</Link>
             </motion.li>
             <motion.li
               variants={fadeInTop}
               className="nav-menu-item block hover:bg-merahDaese hover:text-white transition duration-300  turn_black font-medium"
             >
-              <Link to="/profile" onPointerEnter={preloadProfileBanner} onFocus={preloadProfileBanner} onTouchStart={preloadProfileBanner}>About Us</Link>
+              <Link to="/profile" onClick={closeMenu} onPointerEnter={preloadProfileBanner} onFocus={preloadProfileBanner} onTouchStart={preloadProfileBanner}>About Us</Link>
             </motion.li>
             <motion.li
               variants={fadeInTop}
               className="nav-menu-item block hover:bg-merahDaese hover:text-white transition duration-300  turn_black font-medium"
             >
-              <Link to="/facility">Facility</Link>
+              <Link to="/facility" onClick={closeMenu}>Facility</Link>
             </motion.li>
             <motion.li
               variants={fadeInTop}
               className="nav-menu-item block hover:bg-merahDaese hover:text-white transition duration-300  turn_black font-medium"
             >
-              <Link to="/contact">Contact</Link>
+              <Link to="/contact" onClick={closeMenu}>Contact</Link>
             </motion.li>
             <motion.li
               variants={fadeInTop}
               className="nav-menu-item block hover:bg-merahDaese hover:text-white transition duration-300  turn_black font-medium"
             >
-              <Link to="/product">Product</Link>
+              <Link to="/product" onClick={closeMenu}>Product</Link>
             </motion.li>
           </motion.ul>
         </nav>

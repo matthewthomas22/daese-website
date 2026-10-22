@@ -162,7 +162,7 @@ export default function ProfilePage() {
           <div className="font-oswald text-2xl xl:text-5xl font-semibold pb-4 text-center tracking-wide">
             Our Global Reach
           </div>
-          <div className="text-center text-sm px-40 md:px-60 xl:px-80">
+          <div className="text-center text-sm px-8 md:px-60 xl:px-80">
             Our collective annual production capacity stands at an impressive
             3.0 million pieces. Today, our market extends to include regions
             such as the <b>USA</b>,<b> Europe</b>,<b> Japan</b>,<b> Korea</b>,
